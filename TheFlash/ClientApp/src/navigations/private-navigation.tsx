@@ -1,3 +1,5 @@
+import '../styles/header-style.css';
+
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -38,13 +40,13 @@ const PrivateNav = () => {
             {
                 publicNavs.map((navItem) => {
                     return (
-                        <NavLink to={navItem.url} className="NavLinkItem" key={navItem.url} activeClassName="NavLinkItem-selected">
+                        <NavLink to={navItem.url} className="navLinkItem" key={navItem.url}>
                             <List component="nav">
                                 <ListItem button>
-                                    <ListItemIcon className="innernavitem">
+                                    <ListItemIcon className="navIcon">
                                         {navItem.icon}
                                     </ListItemIcon>
-                                    <ListItemText primary={navItem.name} className="innernavitem" color="black" />
+                                    <ListItemText primary={navItem.name} />
                                 </ListItem>
                             </List>
                         </NavLink>

@@ -17,11 +17,9 @@ const AppRouter = () => (
         <PublicRoute path="/home" component={HomePage} />
         <PublicRoute path="/products" component={ProductsPage} />
         <PublicRoute path="/contact" component={ContactPage} />
-
-        <Route path="/login" component={LoginPage} />
-        <Route component={NotFoundPage} />
-
+        <PublicRoute path="/login" component={LoginPage} />
         <PrivateRoute path="/manageaccount" component={ManageAccountPage} />
+        <Route component={NotFoundPage} />
       </Switch>
   </BrowserRouter>
 );

@@ -1,14 +1,20 @@
+import '../styles/header-style.css';
+
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
+import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import MenuIcon from '@material-ui/icons/Menu';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
+import SearchField from '../components/containers/SearchField';
 import PrivateNavList from '../navigations/private-navigation';
 import PublicNavList from '../navigations/public-navigation';
 
@@ -31,13 +37,10 @@ class Header extends React.Component<Props> {
 
   constructor(props: Props) {
     super(props);
-
-    console.log('inside header component ', props.userId);
   }
 
-  onLeftIconButtonClick = () => {
-    console.log('hi;');
-    this.setState({ open: !this.state.open  });
+  showLeftMenu = () => {
+    this.setState({ open: !this.state.open });
   };
 
   toggleDrawer = (open: boolean) => () => {
@@ -46,56 +49,87 @@ class Header extends React.Component<Props> {
     });
   };
 
-  conditRenderEssential = () =>
+  getAuthButton = () =>
     this.props.userId ? (
       <Button color="inherit" onClick={this.props.logOut}>
         Logout
       </Button>
     ) : (
-      <Button color="inherit">
-        <Link to="/login"> Login</Link>
-      </Button>
-    );
+        <Link to="/login">
+          <IconButton
+            className="mainColor"
+            color="inherit"
+            aria-label="Login"
+          >
+            <AccountCircle />
+          </IconButton>
+        </Link>
+      );
 
   render() {
     return (
       <div>
         <Drawer open={this.state.open} onClose={this.toggleDrawer(false)}>
           <div tabIndex={0} role="button">
-            <div className="sidelistwrapper">
+            <div className="sideListWrapper">
               {
                 !this.props.userId ?
-                <PublicNavList />
-                :
-                <PrivateNavList />
+                  <PublicNavList />
+                  :
+                  <PrivateNavList />
               }
             </div>
           </div>
         </Drawer>
-        <div className="appbarwrapper">
-          <AppBar position="static">
+        <div className="appBarWrapper">
+          <AppBar position="static" className="appBar">
             <Toolbar>
-              <IconButton
-                className="iconbuttonsyle"
-                color="inherit"
-                aria-label="Menu"
-                onClick={this.onLeftIconButtonClick}
+              <Grid
+                container
+                spacing={16}
+                alignItems="center"
+                direction="row"
+                justify="space-between"
               >
-                <MenuIcon />
-              </IconButton>
-              <Typography
-                variant="title"
-                color="inherit"
-                className="headertypoclass"
-              >
-                My React App
-              </Typography>
-
-              {this.conditRenderEssential()}
+                <Grid item>
+                  <div>
+                    <IconButton
+                      className="menuButton"
+                      color="inherit"
+                      aria-label="Menu"
+                      onClick={this.showLeftMenu}
+                    >
+                      <MenuIcon />
+                    </IconButton>
+                    <Link to="/home">
+                      <img className="logo" src={require('../assets/flash-logo-transparent.png')} height={80} width={120} alt="The Flash" />
+                    </Link>
+                  </div>
+                  
+                </Grid>
+                <Grid item>
+                  <SearchField />
+                </Grid>
+                <Grid item>
+                  {this.getAuthButton()}
+                  <IconButton
+                    className="mainColor"
+                    aria-label="Wishlist"
+                  >
+                    <FavoriteIcon />
+                  </IconButton>
+                  <IconButton
+                    className="mainColor"
+                    aria-label="Cart"
+                  >
+                    <ShoppingCartIcon />
+                  </IconButton>
+                </Grid>
+              </Grid>
             </Toolbar>
           </AppBar>
         </div>
-      </div>
+      </div >
     );
   }
 }

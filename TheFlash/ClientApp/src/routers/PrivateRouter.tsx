@@ -17,11 +17,13 @@ export const PrivateRoute = ({
         isAuthenticated ?
           <div>
             <Header />
-            <Component {...props} />
+            <div className="siteWrapper">
+              <Component {...props} />
+            </div>
             <Footer />
           </div>
           :
-          <Redirect to="/" />
+          <Redirect to="/login" />
       }
     />
   );

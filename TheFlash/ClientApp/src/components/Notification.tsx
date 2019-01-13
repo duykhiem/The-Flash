@@ -124,4 +124,5 @@ const mapDispatchToProps = (dispatch: Dispatch<ApplicationActions.ActionTypes>):
         hideNotification: () => dispatch(ApplicationActions.hideNotification())
     };
 };
-export default withStyles(Styles)(connect(mapStateToProps, mapDispatchToProps)(Notification));
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notification);

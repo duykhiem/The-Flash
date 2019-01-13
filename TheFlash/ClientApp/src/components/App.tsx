@@ -1,3 +1,5 @@
+import '../styles/app.css';
+
 import * as React from 'react';
 
 import Notification from '../components/Notification';
