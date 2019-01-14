@@ -27,9 +27,16 @@ namespace TheFlash
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configure strongly typed settings objects
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+            var appSettings = appSettingsSection.Get<AppSettings>();
+
+            // Configure DataContext to use TheFlash.LocalDB
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(appSettings.ConnectionString));
+
             services.AddCors();
-            services.AddDbContext<DataContext>(x => x.UseInMemoryDatabase("TestDb"));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);;
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1); ;
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -39,12 +46,7 @@ namespace TheFlash
 
             services.AddAutoMapper();
 
-            // Configure strongly typed settings objects
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-
             // Configure jwt authentication
-            var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
             {
