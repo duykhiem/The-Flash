@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
+import { InitialState } from 'state';
 
 import rootReducer from '../reducers/root-reducer';
 
@@ -18,6 +19,6 @@ const devTools = () => {
     return window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 };
 
-const store = createStore(rootReducer, devTools());
+const store = createStore(rootReducer, InitialState, devTools());
 
 export default store;

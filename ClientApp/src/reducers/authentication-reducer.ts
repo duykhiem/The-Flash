@@ -7,16 +7,16 @@ export default function authenticationReducer(
         
     switch (action.type) {
 
-        case Actions.LOGIN:
+        case Actions.SET_LOGGED_IN_USER:
             return {
                 ...state,
-                userId: action.userId
+                currentUser: action.user
             };
 
         case Actions.LOGOUT:
             return {
                 ...state,
-                userId: ''
+                currentUser: null
             };
 
         default:

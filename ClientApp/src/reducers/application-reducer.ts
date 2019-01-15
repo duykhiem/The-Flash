@@ -19,6 +19,11 @@ export default function applicationReducer(
                 ...state,
                 notification: InitialState.application.notification
             };
+        case Actions.SET_INPUT_USER:
+            return { 
+                ...state,
+                inputUser: action.value
+            };
         default:
             return state;
     }

@@ -25,73 +25,66 @@ const ContactPage = (props: Props) => {
   };
 
   return (
-    <div className="contact-page-wrapper">
+    <Paper className="contact-page-paper">
       <Grid container spacing={24} justify="center">
-        <Grid item xs={12} md={10} style={{ marginTop: 10 }}>
-          <Paper className="contact-page-paper">
-            <Typography variant="display1" gutterBottom style={{ padding: 15 }}>
-              Contact us
-            </Typography>
+        <Grid item xs={10}>
             <Grid container spacing={24} >
-              <Grid item xs={12} lg={6} md={6} style={{ marginTop: 10 }}>
+              <Grid item xs={12} lg={6} md={6}>
+                <Typography variant="h4" gutterBottom>
+                  Contact us
+                </Typography>
                 <TextField
                   id="Firstname"
                   label="First Name"
                   placeholder="First Name"
-                  className="contact-page-name-list-field"
                   margin="normal"
                 />
               </Grid>
 
-              <Grid item xs={12} lg={6} md={6} style={{ marginTop: 10 }}>
+              <Grid item xs={12} lg={6} md={6}>
                 <TextField
                   id="LastName"
                   label="LastName"
                   placeholder="Last Name"
-                  className="contact-page-name-list-field"
                   margin="normal"
                 />
               </Grid>
 
-              <Grid item xs={12} lg={6} md={6} style={{ marginTop: 10 }}>
+              <Grid item xs={12} lg={6} md={6}>
                 <TextField
                   id="Firstname"
                   label="Email"
                   placeholder="Email address"
-                  className="contact-page-name-list-field"
                   margin="normal"
                 />
               </Grid>
 
-              <Grid item xs={12} lg={6} md={6} style={{ marginTop: 10 }}>
+              <Grid item xs={12} lg={6} md={6}>
                 <TextField
                   id="Firstname"
                   label="Location"
                   placeholder="Location"
-                  className="contact-page-name-list-field"
                   margin="normal"
                 />
               </Grid>
 
-              <Grid item xs={12} lg={12} md={12} style={{ marginTop: 10 }}>
+              <Grid item xs={12} lg={12} md={12}>
                 <TextField
                   id="Firstname"
                   label="Message"
                   multiline
                   rows="2"
                   placeholder="Message"
-                  className="contact-page-name-list-field"
                   margin="normal"
                 />
               </Grid>
-              <Grid item xs={12} lg={12} md={12} style={{ marginTop: 10 }}>
+              <Grid item xs={12} lg={12} md={12}>
                 <Button type="button" color="primary" variant="contained" onClick={onSubmit}>Send</Button>
               </Grid>
             </Grid>
-          </Paper>
         </Grid>
       </Grid>
-    </div>
+    </Paper>
   );
 };
 

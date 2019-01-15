@@ -15,11 +15,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import SearchField from '../components/containers/SearchField';
+import UserModel from '../models/user-model';
 import PrivateNavList from '../navigations/private-navigation';
 import PublicNavList from '../navigations/public-navigation';
+import { history } from '../utils/history';
 
 export interface HeaderProps {
-  userId: string;
+  currentUser: UserModel;
 }
 
 export interface HeaderDispatchProps {
@@ -30,9 +32,7 @@ export type Props = HeaderProps & HeaderDispatchProps;
 
 class Header extends React.Component<Props> {
   state = {
-    value: 1,
     open: false,
-    componentsmenuopen: false
   };
 
   constructor(props: Props) {
@@ -49,11 +49,21 @@ class Header extends React.Component<Props> {
     });
   };
 
+  logOutUser = () => {
+    this.props.logOut();
+    history.push('/');
+  };
+
   getAuthButton = () =>
-    this.props.userId ? (
-      <Button color="inherit" onClick={this.props.logOut}>
-        Logout
-      </Button>
+    this.props.currentUser ? (
+      <IconButton
+        className="mainColor"
+        color="inherit"
+        aria-label="Logout"
+        onClick={this.logOutUser}
+      >
+      <i className="fa fa-sign-out" />
+      </IconButton>
     ) : (
         <Link to="/login">
           <IconButton
@@ -61,7 +71,7 @@ class Header extends React.Component<Props> {
             color="inherit"
             aria-label="Login"
           >
-            <AccountCircle />
+            <i className="fa fa-sign-in" />
           </IconButton>
         </Link>
       );
@@ -73,10 +83,10 @@ class Header extends React.Component<Props> {
           <div tabIndex={0} role="button">
             <div className="sideListWrapper">
               {
-                !this.props.userId ?
-                  <PublicNavList />
-                  :
+                this.props.currentUser ?
                   <PrivateNavList />
+                  :
+                  <PublicNavList />
               }
             </div>
           </div>

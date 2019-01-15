@@ -1,3 +1,4 @@
+import UserModel from '../models/user-model';
 import NotificationType from '../utils/notification-type';
 
 export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
@@ -30,4 +31,19 @@ export function hideNotification(): HideNotification {
     };
 }
 
-export type ActionTypes = ShowNotification | HideNotification;
+export const SET_INPUT_USER = 'SET_INPUT_USER';
+export type SET_INPUT_USER = typeof SET_INPUT_USER;
+
+export interface SetInputUser {
+    type: SET_INPUT_USER;
+    value: UserModel; 
+}
+
+export function setInputUser(user: UserModel): SetInputUser {
+    return {
+        type: SET_INPUT_USER,
+        value: user
+    };
+}
+
+export type ActionTypes = ShowNotification | HideNotification | SetInputUser;

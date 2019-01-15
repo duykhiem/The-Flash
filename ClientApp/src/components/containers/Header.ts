@@ -7,13 +7,13 @@ import Header, { HeaderDispatchProps, HeaderProps } from '../Header';
 
 const mapStateToProps = (state: StoreState): HeaderProps  => {
   return {
-      userId: state.authentication.userId
+      currentUser: state.authentication.currentUser
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<AuthenticationActions.ActionTypes>): HeaderDispatchProps  => {
   return {
-    logOut: () => dispatch(AuthenticationActions.logout())
+    logOut: () => dispatch(AuthenticationActions.logOut())
   };
 };
 

@@ -1,15 +1,17 @@
-export const LOGIN = 'LOGIN';
-export type LOGIN = typeof LOGIN;
+import UserData from '../interfaces/user';
 
-export interface Login {
-  type: LOGIN;
-  userId: string;
+export const SET_LOGGED_IN_USER = 'SET_LOGGED_IN_USER';
+export type SET_LOGGED_IN_USER = typeof SET_LOGGED_IN_USER;
+
+export interface SetLoggedInUser {
+  type: SET_LOGGED_IN_USER;
+  user: UserData;
 }
 
-export function login(userId: string): Login {
+export function setLoggedInUser(user: UserData): SetLoggedInUser {
   return {
-    type: LOGIN,
-    userId: userId
+    type: SET_LOGGED_IN_USER,
+    user: user
   };
 }
 
@@ -20,10 +22,10 @@ export interface Logout {
   type: LOGOUT;
 }
 
-export function logout(): Logout {
+export function logOut(): Logout {
   return {
     type: LOGOUT
   };
 }
 
-export type ActionTypes = Login | Logout;
+export type ActionTypes = SetLoggedInUser | Logout;

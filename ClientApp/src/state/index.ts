@@ -1,3 +1,4 @@
+import UserModel from '../models/user-model';
 import NotificationType from '../utils/notification-type';
 
 export interface StoreState {
@@ -12,10 +13,15 @@ export interface ApplicationState {
         notificationType: NotificationType;
         message: string
     };
+    inputUser: UserModel;
 }
 
 export interface AuthenticationState {
-    userId: string;
+    currentUser: UserModel;
+}
+
+export interface UserInputState {
+    user: UserModel;
 }
 
 export const InitialState: StoreState = {
@@ -25,9 +31,18 @@ export const InitialState: StoreState = {
             showNotification: false,
             notificationType: NotificationType.Success,
             message: ''
+        },
+        inputUser: {
+            Id: '',
+            Username: '',
+            Password: '',
+            FirstName: '',
+            LastName: '',
+            Token: '',
+            RememberMe: false
         }
     },
     authentication: {
-        userId: ''
+        currentUser: null
     }
 };
