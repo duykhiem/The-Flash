@@ -1,5 +1,6 @@
 import * as React from 'react';
 import ProductModel from '../models/product-model';
+import Button from '@material-ui/core/Button';
 
 export interface CartProps {
   cartItems: Array<ProductModel>;
@@ -53,6 +54,10 @@ const Cart = (props: Props) => {
               <div className="remove-item" onClick={() => { props.removeFromCart(item); }}>x</div>
             </div>
           ))}
+            <br/><br/><br/>
+            <Button variant="contained" color="primary">
+              CHECK OUT
+            </Button>
         </div>
       ) : (
           <div className="contains-no-items">

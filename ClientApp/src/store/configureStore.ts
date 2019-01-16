@@ -19,6 +19,7 @@ const devTools = () => {
     return window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 };
 
+// @ts-ignore
 const store = createStore(rootReducer, InitialState, devTools());
 
 export default store;

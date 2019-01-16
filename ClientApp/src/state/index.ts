@@ -5,7 +5,9 @@ import ProductModel from '../models/product-model';
 export interface StoreState {
     application: ApplicationState;
     authentication: AuthenticationState;
-    cart: Array<ProductModel>;
+    cart: {
+        items: Array<ProductModel>
+    };
     product: {
         items: Array<ProductModel>
     };
@@ -48,7 +50,9 @@ export const InitialState: StoreState = {
     authentication: {
         currentUser: null
     },
-    cart: [],
+    cart: {
+        items: []
+    },
     product: {
         items: []
     }

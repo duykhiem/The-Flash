@@ -19,7 +19,7 @@ const ProductItem = (props: Props) => {
 
         let item = Object.assign({}, props.item);
         item.Quantity = 1;
-        props.addItemToCart(props.item);
+        props.addItemToCart(item);
     };
 
     return (

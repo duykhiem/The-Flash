@@ -1,5 +1,3 @@
-import '../styles/header-style.css';
-
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
