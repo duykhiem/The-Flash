@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-
-import * as ApplicationActions from '../../actions/application-action';
+import { setProductList } from '../../actions/product-action';
 import { StoreState } from '../../state';
 import ProductsPage, { ProductsPageDispatchProps, ProductsPageProps } from '../ProductsPage';
+import ProductModel from 'models/product-model';
 
 const mapStateToProps = (state: StoreState): ProductsPageProps  => {
   return {
+    items: state.product.items
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<ApplicationActions.ActionTypes>): ProductsPageDispatchProps  => {
+const mapDispatchToProps = (dispatch: Dispatch<any>): ProductsPageDispatchProps  => {
   return {
+    setProductList: (list: Array<ProductModel>) => dispatch(setProductList(list))
   };
 };
 

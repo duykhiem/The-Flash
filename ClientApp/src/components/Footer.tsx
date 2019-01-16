@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import SendIcon from '@material-ui/icons/Send';
 
 const Footer = () => {
   return (

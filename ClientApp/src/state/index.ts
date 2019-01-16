@@ -1,13 +1,17 @@
 import UserModel from '../models/user-model';
 import NotificationType from '../utils/notification-type';
+import ProductModel from '../models/product-model';
 
 export interface StoreState {
     application: ApplicationState;
     authentication: AuthenticationState;
+    cart: Array<ProductModel>;
+    product: {
+        items: Array<ProductModel>
+    };
 }
 
 export interface ApplicationState {
-    history: Array<string>;
     notification: {
         showNotification: boolean;
         notificationType: NotificationType;
@@ -26,7 +30,6 @@ export interface UserInputState {
 
 export const InitialState: StoreState = {
     application: {
-        history: [],
         notification: {
             showNotification: false,
             notificationType: NotificationType.Success,
@@ -44,5 +47,9 @@ export const InitialState: StoreState = {
     },
     authentication: {
         currentUser: null
+    },
+    cart: [],
+    product: {
+        items: []
     }
 };

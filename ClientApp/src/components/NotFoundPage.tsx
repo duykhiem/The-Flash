@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => (
   <div>
-    404 - <Link to="/">Go home</Link>
+    <Link to="/">GO HOME!</Link>
+    <br/>
+    <img src={require('../assets/404.jpg')} />
   </div>
 );
 
