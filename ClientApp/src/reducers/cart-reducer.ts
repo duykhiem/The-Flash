@@ -6,6 +6,7 @@ export default function cartReducer(
     action: any) {
     switch (action.type) {
         case 'ADD_TO_CART': {
+            // TODO: Refactor
             var items;
             if ( state.items.filter(i => i.Name === action.item.Name).length > 0 ) {
                 items = Object.assign([], state.items);

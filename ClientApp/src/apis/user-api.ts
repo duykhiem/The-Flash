@@ -1,22 +1,29 @@
 import axios, { AxiosRequestConfig } from 'axios';
+const qs = require('qs');
 import UserModel from 'models/user-model';
-
-import UserData from '../interfaces/user';
 
 class UserApi {
 
     login = (username: string, password: string) => {
 
         const url = '/users/authenticate';
+        return axios.post<UserModel>(url, { username, password });
+
+        // const url = 'http://commerceserviceapi/episerverapi/token';
 
         // var requestConfig: AxiosRequestConfig = {
         //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYmYiOjE1NDc0OTg5MjEsImV4cCI6MTU0ODEwMzcyMSwiaWF0IjoxNTQ3NDk4OTIxfQ.YgqLVmzIktMXRb9rw9CUTrzr-myqah8b3bP6OBbU3kg' 
+        //         'Content-Type': 'application/x-www-form-urlencoded',
         //     }
         // };
 
-        return axios.post<UserModel>(url, {username, password});
+        // var params = {
+        //     grant_type: 'password',
+        //     username : username,
+        //     password: password
+        // };
+
+        // return axios.post(url, qs.stringify(params), requestConfig);
     }
 }
 

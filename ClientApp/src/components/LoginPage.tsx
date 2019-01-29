@@ -48,10 +48,13 @@ const LoginPage = (props: Props) => {
     const userApi = new UserApi();
     try {
       const response = await userApi.login(props.user.Username, props.user.Password);
+      // let loggedInUser = new UserModel();
+      // loggedInUser.Username = props.user.Username,
+      // loggedInUser.Token = response.data.access_token;
       var loggedInUser = response.data as UserModel;
       props.setLoggedInUser(loggedInUser);
       history.push('/');
-      
+
     } catch (error) {
       props.showNotification(NotificationType.Error, 'Wrong username or password !');
       console.log(error);
@@ -81,12 +84,12 @@ const LoginPage = (props: Props) => {
           </FormControl>
           <FormControlLabel
             control={
-              <Checkbox 
-                name="RememberMe" 
-                checked={props.user.RememberMe} 
+              <Checkbox
+                name="RememberMe"
+                checked={props.user.RememberMe}
                 value="RememberMe"
                 onChange={handleInputChange}
-                color="primary" 
+                color="primary"
               />}
             label="Remember me"
           />

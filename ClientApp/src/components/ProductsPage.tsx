@@ -3,6 +3,7 @@ import ProductModel from '../models/product-model';
 import ProductApi from '../apis/product-api';
 import ProductList from '../components/ProductList';
 import Cart from '../components/containers/Cart';
+import NotificationType from '../utils/notification-type';
 
 export interface ProductsPageProps {
   items: Array<ProductModel>;
@@ -10,6 +11,7 @@ export interface ProductsPageProps {
 
 export interface ProductsPageDispatchProps {
   setProductList: (productList: Array<ProductModel>) => void;
+  showNotification: (type: NotificationType, message: string) => void;
 }
 
 export type Props = ProductsPageProps & ProductsPageDispatchProps;
@@ -17,9 +19,15 @@ export type Props = ProductsPageProps & ProductsPageDispatchProps;
 class ProductsPage extends React.Component<Props> {
   
   async componentWillMount() {
-    const productApi = new ProductApi();
-    const products = await productApi.getAllProducts();
-    this.props.setProductList(products);
+    try {
+      const productApi = new ProductApi();
+      const products = await productApi.getAllProducts();
+      this.props.setProductList(products);
+      
+    } catch (error) {
+      this.props.showNotification(NotificationType.Error, 'Error !');
+      console.log(error);
+    }
   }
 
   render () {
