@@ -8,5 +8,5 @@ The Flash is a single page website for Fashion Store built with :
 
 
 Quick use: 
-- Open The-Flash.sln using Visual Studio -> F5
+- Open TheFlash.sln using Visual Studio -> F5
 - Test account to login: admin/store
